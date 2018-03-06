@@ -112,6 +112,7 @@ class SwipeActionsView: UIView {
                 let switchToAdd = SwipeActionSwitch(action: action)
                 switchToAdd.addTarget(self, action: #selector(switchTapped(tappedSwitch:)), for: .valueChanged)
                 switchToAdd.transform = CGAffineTransform(scaleX: switchSizeMultiplier, y: switchSizeMultiplier)
+                switchToAdd.autoresizingMask = [.flexibleHeight, orientation == .right ? .flexibleRightMargin : .flexibleLeftMargin]
                 actionButton.subSwitch = switchToAdd
             } else {
                 actionButton.addTarget(self, action: #selector(actionTapped(button:)), for: .touchUpInside)
@@ -138,7 +139,7 @@ class SwipeActionsView: UIView {
                 
                 let containerSize = CGSize(width: wrapperView.contentRect.width, height: size.height)
                 let dx = containerSize.width - switchSize.width
-                subSwitch.frame = CGRect(x: dx * 0.5, y: options.buttonPadding ?? 8, width: switchSize.width, height: switchSize.height)
+                subSwitch.frame = CGRect(x: wrapperView.contentRect.origin.x + (dx * 0.5), y: options.buttonPadding ?? 8, width: switchSize.width, height: switchSize.height)
                 
                 wrapperView.addSubview(subSwitch)
             }
