@@ -22,6 +22,7 @@ class SwipeActionButton: UIButton {
     }
     var verticalAlignment: SwipeVerticalAlignment = .centerFirstBaseline
     
+    
     var currentSpacing: CGFloat {
         return (currentTitle?.isEmpty == false && maximumTopComponentHeight > 0) ? spacing : 0
     }
@@ -32,6 +33,12 @@ class SwipeActionButton: UIButton {
         let totalHeight = maximumTopComponentHeight + titleHeight + currentSpacing
 
         return contentRect.center(size: CGSize(width: contentRect.width, height: totalHeight))
+    }
+    
+    private var imageHeight: CGFloat {
+        get {
+            return currentImage == nil ? 0 : maximumImageHeight
+        }
     }
     
     convenience init(action: SwipeAction) {
